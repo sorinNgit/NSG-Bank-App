@@ -1,10 +1,7 @@
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.*;
 
-import account.Account;
-import account.CurrentAccount;
 import card.Card;
 
 public class ClientService {
@@ -21,18 +18,20 @@ public class ClientService {
                 return c1.getName().compareTo(c2.getName());
             }
         });
+        CSV_Audit.writeAction("Register Client");
     }
 
     public void printClients() {
         for(Client client : registeredClients){
             System.out.println(client);
         }
+        CSV_Audit.writeAction("Show Clients");
     }
 
     public void addAccount(Client client){
         Account account = new CurrentAccount(client.getName());
         client.accounts.add(account);
-
+        CSV_Audit.writeAction("Add Account");
     }
 
     public void printCards(){
@@ -41,22 +40,25 @@ public class ClientService {
                 if (account instanceof CurrentAccount) {
                     CurrentAccount account1 = (CurrentAccount) account;
                     account1.addCard(account1.getAccHolder());
-                    String allCards = "";
+                    StringBuilder allCards = new StringBuilder();
                     for(Card card : account1.cards){
-                        allCards += card.number + " | ";
+                        allCards.append(card.number).append(" | ");
                     }
                     System.out.println(client.getName() + "'s card: " + allCards);
                 }
             }
         }
+        CSV_Audit.writeAction("Show Cards");
     }
 
     public Client findClientByName(String name){
         for(Client client : registeredClients){
             if(client.getName().equals(name)){
+                CSV_Audit.writeAction("Find Client");
                 return client;
             }
         }
+
         return null;
     }
 

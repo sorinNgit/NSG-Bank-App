@@ -1,10 +1,9 @@
-package account;
-
-import java.util.ArrayList;
-import java.util.Random;
 import card.Card;
 import transaction.Transaction;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CurrentAccount extends Account{
     public double comision = 0.5/100;
@@ -28,6 +27,8 @@ public class CurrentAccount extends Account{
         System.out.println("Card used: " + cards.get(0).getNumber() + "  " + this.acc_holder + "  " + cards.get(0).getExp());
         System.out.println("Founds: " + founds +" "+ currency);
         System.out.println("---------------------------------------------");
+        CSV_Audit.writeAction("Deposit");
+
     }
 
     @Override
@@ -41,6 +42,7 @@ public class CurrentAccount extends Account{
             System.out.println("Founds: " + founds + ' ' + currency);
             System.out.println("---------------------------------------------");
         }
+        CSV_Audit.writeAction("Withdrawal");
     }
 
     public void payment(double amount, String item, String company, String day, String month, String year) {
@@ -53,6 +55,7 @@ public class CurrentAccount extends Account{
             transaction.setDate(day, month, year);
             transactions.add(transaction);
         }
+        CSV_Audit.writeAction("Payment");
     }
 
     public void cashing(double amount,String item, String payer,String day, String month, String year){
@@ -61,6 +64,7 @@ public class CurrentAccount extends Account{
         Transaction transaction = new Transaction(amount, item, "from", payer);
         transaction.setDate(day, month, year);
         transactions.add(transaction);
+        CSV_Audit.writeAction("Cashing");
     }
     public void check_balance(){
         System.out.println("Balance available: " + getFounds() +" "+ currency);
@@ -72,12 +76,14 @@ public class CurrentAccount extends Account{
         for(Transaction transaction : transactions){
             System.out.println(transaction);
         }
+        CSV_Audit.writeAction("Transaction History");
     }
 
     public void addCard(String name){
         Card card = new Card(name);
         card.setAcc_nr(this.acc_nr);
         cards.add(card);
+        CSV_Audit.writeAction("Add Card");
     }
 
 
@@ -86,6 +92,9 @@ public class CurrentAccount extends Account{
         Transaction transaction = new Transaction(amount, item,"to",payer);
         transaction.setDate(day,month,year);
         transactions.add(transaction);
+
+        System.out.println("\nSuccessfully returned Bicicleta to " + payer +"!");
+        CSV_Audit.writeAction("Return item");
     }
 
     // getters and setters
