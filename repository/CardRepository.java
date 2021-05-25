@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class CardRepository {
 
-    // CallableStatement
+
     public void insertCard(Card card) {
         String insertCardSql = "INSERT INTO cards VALUES("+card.getId()+",'"+card.getName()+"',"+card.getCvc()+",'"+card.getNumber()+"','"+card.getExp()+"')";
 
@@ -21,7 +21,6 @@ public class CardRepository {
         }
     }
 
-    // PreparedStatement - use when we have parameters
     public Card getCardById(int id) {
         String selectSql = "SELECT * FROM cards WHERE id=?";
 
@@ -38,7 +37,7 @@ public class CardRepository {
         return null;
     }
 
-    // PreparedStatement
+
     public void updateCvc(int cvc, int id) {
         String updateCvcSql = "UPDATE cards SET cvc=? WHERE id=?";
 

@@ -60,7 +60,7 @@ public class CurrentAccountRepository {
         }
     }
 
-    // PreparedStatement
+
     public void updateFoundsCurrentAccount(double founds, int id) {
         String updateFounds = "UPDATE current_accounts SET founds=? WHERE id=?";
 

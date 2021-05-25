@@ -6,7 +6,7 @@ import databaseConfiguration.*;
 import java.sql.*;
 
 public class ClientRepository {
-    // CallableStatement
+
     public void insertClient(Client client) {
         String insertPersonSql = "INSERT INTO clients(name) VALUES('"+client.getName()+"')";
 
@@ -20,7 +20,6 @@ public class ClientRepository {
         }
     }
 
-    // PreparedStatement - use when we have parameters
     public Client getPersonById(int id) {
         String selectSql = "SELECT * FROM clients WHERE id=?";
 
@@ -37,7 +36,7 @@ public class ClientRepository {
         return null;
     }
 
-    // PreparedStatement
+
     public void updateClientName(String name, int id) {
         String updateNameSql = "UPDATE clients SET name=? WHERE id=?";
 

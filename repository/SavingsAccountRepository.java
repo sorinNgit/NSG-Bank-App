@@ -42,7 +42,6 @@ public class SavingsAccountRepository {
         return null;
     }
 
-    // PreparedStatement
     public void updateFoundsSavingsAccount(double founds, int id) {
         String updateFounds = "UPDATE savings_accounts SET founds=? WHERE id=?";
 
