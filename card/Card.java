@@ -3,7 +3,7 @@ package card;
 import java.util.Random;
 
 public class Card {
-
+    int id;
     public String name;
     public String number;
     public String exp;
@@ -17,6 +17,15 @@ public class Card {
         this.cvc = rand.nextInt(99)+rand.nextInt(9)*100;
         this.exp = rand.nextInt(30) + "/" + rand.nextInt(12);
         this.number = (rand.nextInt(9999-1000) + 1000) + " " + (rand.nextInt(9999-1000) + 1000) + " " + (rand.nextInt(9999-1000) + 1000) + " " + (rand.nextInt(9999-1000) + 1000);
+    }
+    public Card(int id, String name,
+                      int cvc,
+                      String number,
+                      String exp){
+        this.name = name;
+        this.cvc = cvc;
+        this.number = number;
+        this.exp = exp;
     }
 
     public void getCard(){
@@ -52,10 +61,16 @@ public class Card {
     public int getCvc(){
         return cvc;
     }
+
+    public void setCvc(int cvc){this.cvc = cvc;}
+    public void setExp(String exp){this.exp = exp;}
+
     public void setAcc_nr(int acc_nr){
         this.acc_nr = acc_nr;
     }
     public int getAcc_nr(){
         return acc_nr;
     }
+
+    public int getId(){return id;}
 }

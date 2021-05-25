@@ -1,3 +1,5 @@
+package csv;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 public class CSV_Reader {
     private static CSV_Reader csv_instance;
 
-    CSV_Reader(){
+    public CSV_Reader(){
         //TODO: maybe make constructor
     }
 

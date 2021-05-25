@@ -1,12 +1,14 @@
+package client;
 
 import java.util.ArrayList;
 import java.util.*;
-
+import account.*;
+import csv.*;
 import card.Card;
 
 public class ClientService {
 
-    protected static List<Client> registeredClients = new ArrayList<>();
+    public static List<Client> registeredClients = new ArrayList<>();
 
     public void registerClient(String name) {
         Client client = new Client();
@@ -18,7 +20,20 @@ public class ClientService {
                 return c1.getName().compareTo(c2.getName());
             }
         });
-        CSV_Audit.writeAction("Register Client");
+        CSV_Audit.writeAction("Register client.Client");
+    }
+
+    public void registerClient(int id, String name){
+
+        Client client = new Client(id, name);
+        registeredClients.add(client);
+        Collections.sort(registeredClients, new Comparator<Client>(){
+            @Override
+            public int compare(Client c1, Client c2){
+                return c1.getName().compareTo(c2.getName());
+            }
+        });
+        CSV_Audit.writeAction("Register client.Client");
     }
 
     public void printClients() {
@@ -31,7 +46,7 @@ public class ClientService {
     public void addAccount(Client client){
         Account account = new CurrentAccount(client.getName());
         client.accounts.add(account);
-        CSV_Audit.writeAction("Add Account");
+        CSV_Audit.writeAction("Add account.Account");
     }
 
     public void printCards(){
@@ -54,7 +69,7 @@ public class ClientService {
     public Client findClientByName(String name){
         for(Client client : registeredClients){
             if(client.getName().equals(name)){
-                CSV_Audit.writeAction("Find Client");
+                CSV_Audit.writeAction("Find client.Client");
                 return client;
             }
         }

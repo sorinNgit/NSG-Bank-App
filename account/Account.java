@@ -1,7 +1,9 @@
+package account;
+
 import java.util.Objects;
 
 public abstract class Account {
-
+    int id;
     public int acc_nr;
     public String acc_holder;
     public double founds;

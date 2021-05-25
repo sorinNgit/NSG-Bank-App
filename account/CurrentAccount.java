@@ -1,11 +1,16 @@
+package account;
+
+import account.Account;
 import card.Card;
 import transaction.Transaction;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import csv.*;
 
-public class CurrentAccount extends Account{
+public class CurrentAccount extends Account {
     public double comision = 0.5/100;
     private int limit = 20000;
     List<Transaction> transactions = new ArrayList<>();
@@ -18,6 +23,14 @@ public class CurrentAccount extends Account{
         this.acc_holder = acc_holder;
         this.founds = 0;
         this.iban = "RO" + (rand.nextInt(9)+rand.nextInt(9)*10) + "NSG" + (rand.nextInt(999999999) + 1000000000);
+    }
+
+    public CurrentAccount(int id, String acc_holder, double founds, int acc_number, String iban){
+        this.id = id;
+        this.acc_nr = acc_number;
+        this.acc_holder = acc_holder;
+        this.founds = founds;
+        this.iban = iban;
     }
 
     @Override
@@ -131,10 +144,12 @@ public class CurrentAccount extends Account{
         this.founds = newFounds;
     }
 
+    public int getId(){return id;}
+
     @Override
     public String toString(){
-       return "\nExtras de cont\nAccount Holder: " + this.acc_holder + '\n'
-               + "Account Number: " + this.acc_nr + '\n'
+       return "\nExtras de cont\naccount.Account Holder: " + this.acc_holder + '\n'
+               + "account.Account Number: " + this.acc_nr + '\n'
                + "Iban: "+ this.iban;
     }
 

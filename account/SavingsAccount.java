@@ -1,3 +1,6 @@
+package account;
+
+import account.Account;
 import card.Card;
 import java.util.*;
 
@@ -15,6 +18,13 @@ public class SavingsAccount extends Account {
         this.iban = "RO" + (rand.nextInt(9) + rand.nextInt(9) * 10) + "NSG" + (rand.nextInt(999999999) + 1000000000);
     }
 
+    public SavingsAccount(int id,String name, double founds, int acc_nr, String iban){
+        this.id = id;
+        this.acc_holder = name;
+        this.acc_nr = acc_nr;
+        this.founds = founds;
+        this.iban = iban;
+    }
 
     public void addCard(String name){
         Card card = new Card(name);
@@ -53,7 +63,39 @@ public class SavingsAccount extends Account {
     }
 
 
+    // getters and setters
+
+    public String getIban(){
+        return iban;
+    }
+
+    public void setIban(String newIban){
+        this.iban = newIban;
+    }
+
+    public int getAccNr(){
+        return acc_nr;
+    }
+
+    public void setAccNr(int newAccNr){
+        this.acc_nr = newAccNr;
+    }
+
+    public String getAccHolder(){
+        return acc_holder;
+    }
+
+    public void setAccHolder(String newAccHolder){
+        this.acc_holder = newAccHolder;
+    }
+
     public double getFounds(){
         return founds;
     }
+
+    public void setFounds(int newFounds){
+        this.founds = newFounds;
+    }
+
+    public int getId(){return id;}
 }

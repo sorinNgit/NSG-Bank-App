@@ -1,10 +1,12 @@
+package csv;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class CSV_Writer {
     private static CSV_Writer csv_instance;
 
-    CSV_Writer(){
+    public CSV_Writer(){
         //TODO: maybe a constructor
     }
 
