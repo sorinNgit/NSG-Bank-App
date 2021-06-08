@@ -1,4 +1,5 @@
-#NSG Bank App Java OOP Project
+## NSG Bank App Java OOP Project
+* O aplicatie ce simuleaza activitatea bancara folosind concepte OOP in Java.
 
 ## Account
 Account este o clasa abstracta utilizata pentru a mosteni Current Account si Savings Account. </br>
